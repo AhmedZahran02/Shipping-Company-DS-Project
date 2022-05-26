@@ -748,9 +748,6 @@ void Company::MaxWait(Type t, Time T)
 			headPtr = headPtr->getnext();
 		}
 		if (!Truck_vipWaitingList->isempty()) {
-
-
-
 			if (!Truck_vipLoadingList) {
 				int cnt = CargosToLoad->getSize();
 				int loadedCargos = 0;
