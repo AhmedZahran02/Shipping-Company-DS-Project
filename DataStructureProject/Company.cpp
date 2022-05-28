@@ -1098,6 +1098,13 @@ void Company::Deliver_MovingCargo(Type t, Time DT) {
 		ptr = Truck_specialMovingList->gethead();
 		while (ptr) {
 			if (!ptr->getdata()->Truckisempty()) {
+				if (ptr->getdata()->failed()) {
+					fixTruck(ptr->getdata(), DT);
+					node<Truck>* temp = ptr;
+					ptr = ptr->getnext();
+					Truck_specialMovingList->deletenode(temp);
+					continue;
+				}
 				linkedlist<Cargo>* tempoCargo = ptr->getdata()->getCargolist();
 				int num2 = tempoCargo->getSize();
 				node<Cargo>* tcargo = tempoCargo->gethead();
@@ -1119,6 +1126,13 @@ void Company::Deliver_MovingCargo(Type t, Time DT) {
 		ptr = Truck_vipMovingList->gethead();
 		while (ptr) {
 			if (!ptr->getdata()->Truckisempty()) {
+				if (ptr->getdata()->failed()) {
+					fixTruck(ptr->getdata(), DT);
+					node<Truck>* temp = ptr;
+					ptr = ptr->getnext();
+					Truck_vipMovingList->deletenode(temp);
+					continue;
+				}
 				linkedlist<Cargo>* tempoCargo = ptr->getdata()->getCargolist();
 				int num2 = tempoCargo->getSize();
 				node<Cargo>* tcargo = tempoCargo->gethead();
